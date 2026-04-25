@@ -16,3 +16,13 @@ def pregunta_11():
 
 
     """
+    with open("files/input/data.csv", "r") as file:
+        master = dict()
+        for record in [line.split('\t') for line in file.readlines()]:
+            ks = record[3].split(',')
+            v = int(record[1])
+            for k in ks:
+                master[k] = master.get(k,0)+v
+        return master
+
+print(pregunta_11())

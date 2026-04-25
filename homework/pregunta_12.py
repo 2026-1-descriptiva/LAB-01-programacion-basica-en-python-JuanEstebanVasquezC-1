@@ -15,3 +15,12 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    with open("files/input/data.csv", "r") as file:
+        master = dict()
+        for record in [line.split('\t') for line in file.readlines()]:
+            k = record[0]
+            v = sum([int(v) for k_v in record[-1].strip().split(',') for _,v in [k_v.split(':')]])
+            master[k] = master.get(k,0)+v
+    return master
+
+print(pregunta_12())

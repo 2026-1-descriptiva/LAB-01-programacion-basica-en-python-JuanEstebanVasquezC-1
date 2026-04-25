@@ -13,14 +13,24 @@ def pregunta_09():
 
     Rta/
     {'aaa': 13,
-     'bbb': 16,
-     'ccc': 23,
-     'ddd': 23,
-     'eee': 15,
-     'fff': 20,
-     'ggg': 13,
-     'hhh': 16,
-     'iii': 18,
-     'jjj': 18}}
+    'bbb': 16,
+    'ccc': 23,
+    'ddd': 23,
+    'eee': 15,
+    'fff': 20,
+    'ggg': 13,
+    'hhh': 16,
+    'iii': 18,
+    'jjj': 18}}
 
     """
+    with open("files/input/data.csv", "r") as file:
+        master = dict()
+        for record in [line.split('\t') for line in file.readlines()]:
+            sub = record[-1].strip().split(',')
+            for k in [k for k_s in sub for k, _ in [k_s.split(':')]]:
+                master[k] = master.get(k,0) + 1
+        
+        return master
+
+print(pregunta_09())

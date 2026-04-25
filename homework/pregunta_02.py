@@ -15,3 +15,12 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    with open("files/input/data.csv", "r") as file:
+        letters = dict()
+        for record in [line.split('\t') for line in file.readlines()]:
+            letter = record[0]
+            letters[letter] = letters.get(letter, 0) + 1
+        return sorted(list(letters.items()))
+
+
+print(pregunta_02())

@@ -27,3 +27,13 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    with open("files/input/data.csv", "r") as file:
+        master = dict()
+        for record in [line.split('\t') for line in file.readlines()]:
+            k = int(record[1])
+            v = record[0]
+            master[k] =  sorted(set(master.get(k,[]) + [v]))
+
+    return sorted(list(master.items()))
+    
+print(pregunta_08())

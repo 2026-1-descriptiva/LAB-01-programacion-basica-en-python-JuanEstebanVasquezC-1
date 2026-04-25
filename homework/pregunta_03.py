@@ -15,3 +15,13 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    with open("files/input/data.csv", "r") as file:
+        letters = dict()
+        for record in [line.split('\t') for line in file.readlines()]:
+            letter = record[0]
+            amount = int(record[1])
+            letters[letter] = letters.get(letter, 0) + amount
+        return sorted(list(letters.items()))
+
+
+print(pregunta_03())

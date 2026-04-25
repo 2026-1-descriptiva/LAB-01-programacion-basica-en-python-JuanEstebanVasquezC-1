@@ -13,16 +13,24 @@ def pregunta_04():
 
     Rta/
     [('01', 3),
-     ('02', 4),
-     ('03', 2),
-     ('04', 4),
-     ('05', 3),
-     ('06', 3),
-     ('07', 5),
-     ('08', 6),
-     ('09', 3),
-     ('10', 2),
-     ('11', 2),
-     ('12', 3)]
+    ('02', 4),
+    ('03', 2),
+    ('04', 4),
+    ('05', 3),
+    ('06', 3),
+    ('07', 5),
+    ('08', 6),
+    ('09', 3),
+    ('10', 2),
+    ('11', 2),
+    ('12', 3)]
 
     """
+    with open("files/input/data.csv", "r") as file:
+        months = dict()
+        for record in [line.split('\t') for line in file.readlines()]:
+            month = record[2].split('-')[1]
+            months[month] = months.get(month, 0) + 1
+        return sorted(list(months.items()))
+
+print(pregunta_04())

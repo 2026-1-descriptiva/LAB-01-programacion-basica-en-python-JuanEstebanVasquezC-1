@@ -13,10 +13,18 @@ def pregunta_10():
 
     Rta/
     [('E', 3, 5),
-     ('A', 3, 4),
-     ...
-     ('E', 2, 3),
-     ('E', 3, 3)]
+    ('A', 3, 4),
+    ...
+    ('E', 2, 3),
+    ('E', 3, 3)]
 
 
     """
+    with open("files/input/data.csv", "r") as file:
+        master = []
+        for record in [line.split('\t') for line in file.readlines()]:
+            letter = record[0]
+            count_1 = len(record[3].split(','))
+            count_2 = len(record[4].split(','))
+            master.append((letter,count_1,count_2))
+        return master
